@@ -10,7 +10,6 @@
   <meta http-equiv="refresh" content="300"><!-- every five minutes -->
   <meta name="date" content="<?php echo date ('c', getlastmod()); ?>">
   <meta name="modified" content="<?php echo date('c'); ?>">
-  <meta name="author" content="Helmut Schütz">
   <meta name="robots" content="noindex, follow">
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="icon" href="favicon.ico" type="image/ico">
