@@ -1,0 +1,15 @@
+h1{font-family:Verdana,Arial,Helvetica,sans-serif;font-size:1.15em !important;text-align:left;margin:2.2em 0px .8em 0px !important}
+ul{list-style-type:none;line-height:115%;margin-left:-.6em;margin-top:0px}
+ul#posts a.post{color:#000;background-color:#eee;text-decoration:none;border:1px solid #eee}
+ul#posts a.post:link{color:#000;background-color:#eee;text-decoration:none;border:1px solid #eee}
+ul#posts a.post:visited{color:#084262;background-color:#eee;text-decoration:none;border:1px solid #eee}
+ul#posts a.post:focus, a.post:hover{color:#000;background-color:#fff;text-decoration:none;border:1px dotted #ddd;margin-left:-1px;margin-right:-1px}
+ul#posts a.post:active{color:#000;background-color:#eee;text-decoration:none;border:1px solid #eee;outline:none}
+li{font-size:95%}
+li.top{margin-left:-1.4em;padding-left:18px;padding-right:1px;background:url(../img/topic.png) no-repeat 0px 1px}
+li.reply{margin-left:-1.4em;padding-left:18px;padding-right:1px;background:url(../img/reply_s.png) no-repeat 0px 0px}
+.cat{color:#5C5C5C}
+.name{color:#084262}
+.flagpos{float:right; margin-right:3px; padding-left:1px}
+img.flag{box-shadow:1px 1px 3px #999}
+.small{font-size:.75em !important; line-height:133.33%}
