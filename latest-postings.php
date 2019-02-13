@@ -11,8 +11,8 @@
   <meta name="date" content="<?php echo date ('c', getlastmod()); ?>">
   <meta name="modified" content="<?php echo date('c'); ?>">
   <meta name="author" content="Helmut Schütz">
-  <link rel="shortcut icon" href="https://static.bebac.at/Forum_favicon.ico">
   <meta name="robots" content="noindex, follow">
+  <link rel="shortcut icon" href="favicon.ico">
   <link rel="icon" href="favicon.ico" type="image/ico">
   <link rel="icon" href="195x195.png" type="image/png"><!-- Opera speed dial icon -->
   <link rel="stylesheet" type="text/css" href="latest.css">
