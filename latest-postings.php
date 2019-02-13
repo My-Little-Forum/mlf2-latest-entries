@@ -3,19 +3,19 @@
 <html lang="en">
  <head>
   <meta charset="utf-8">
+  <title>BEBA Forum • Latest 20 posts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="origin">
   <meta name="referrer" content="same-origin">
   <meta http-equiv="refresh" content="300"><!-- every five minutes -->
   <meta name="date" content="<?php echo date ('c', getlastmod()); ?>">
   <meta name="modified" content="<?php echo date('c'); ?>">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Helmut Schütz">
   <meta name="robots" content="noindex, follow">             -->
   <link rel="shortcut icon" href="https://static.bebac.at/Forum_favicon.ico">
   <link rel="icon" href="favicon.ico" type="image/ico">
   <link rel="icon" href="195x195.png" type="image/png"><!-- Opera speed dial icon -->
   <link rel="stylesheet" type="text/css" href="latest.css">
-  <title>BEBA Forum • Latest 20 posts</title>
  </head>
  <body>
   <div id="Seite"><!-- sic! -->
