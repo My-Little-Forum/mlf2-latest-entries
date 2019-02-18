@@ -13,18 +13,22 @@ if (empty($errors)) {
 	mysqli_query($link, 'SET NAMES utf8');
 	# every category except Mods/Admins, forum internals, not public
 	$query = "SELECT
-	time,
-	zeit,
-	subject,
-	cattext,
-	id,
-	tid,
-	name,
-	ip
-	FROM mlf_entrycats
-	WHERE category NOT IN(15, 18, 14, 24)
-	GROUP BY id
-	ORDER BY zeit desc, id desc LIMIT 0, 20";
+	t1.id,
+	t1.tid,
+	t1.time,
+	CASE
+		WHEN t1.user_id > 0 THEN (SELECT t2.user_name FROM " . $db_settings['userdata_table'] . " AS t2 WHERE t2.user_id = t1.user_id)
+		ELSE t1.name
+	END AS name,
+	t1.subject,
+	CASE
+		WHEN t1.category > 0 THEN (SELECT t3.category FROM " . $db_settings['category_table'] . " AS t3 WHERE t3.id = t1.category)
+		ELSE NULL
+	END AS category
+	FROM " . $db_settings['forum_table'] . " AS t1
+	WHERE t1.category IN(SELECT id FROM " . $db_settings['category_table'] . " WHERE accession NOT IN(1, 2)) OR t1.category = 0
+	ORDER BY t1.time DESC, t1.id DESC
+	LIMIT 0, 20";
 	$result = mysqli_query($link, $query);
 	if ($result === false) {
 		$errors[] = "Reading from the database failed.";
