@@ -1,10 +1,12 @@
 <?php
 
 $db_settings_file = "";
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 include($db_settings_file);
 
-$link = @mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database']);
+$link = mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database']);
 
 if ($link === false) {
 	$errors[] = "Connecting to database failed.";
@@ -32,6 +34,8 @@ if (empty($errors)) {
 	$result = mysqli_query($link, $query);
 	if ($result === false) {
 		$errors[] = "Reading from the database failed.";
+		$errors[] = mysqli_errno($link);
+		$errors[] = mysqli_error($link);
 	} else {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$post = date('Y-m-d H:i', $row["zeit"]);
@@ -68,6 +72,9 @@ if (empty($errors)) {
 	}
 	/* Closing connection */
 	mysqli_close($link);
+}
+if (!empty($errors)) {
+	echo "<pre>" . print_r($errors, true) . "</pre>\n";
 }
 
 ?>
