@@ -1,6 +1,5 @@
 <?php
 
-$db_settings_file = "";
 /**
  * Display the latest entries of a My Little Forum instance
  *
@@ -10,6 +9,21 @@ $db_settings_file = "";
  */
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+/**
+ * configuration section
+ */
+# file with the database settings
+# please set path to the db_settings.php of the installation of My Little Forum
+$db_settings_file = "../config/db_settings.php";
+# number of entries to display
+# set the overall number of entries you want to display on this page
+$numberOfEntries = 25;
+# array of category types to display
+# 0 = categories, visible to not registered users
+# 1 = categories, visible to registered users (hide them in the list, if they are hidden in the forum)
+# 2 = categories, visible to only moderators and administrators (normally hidden in the forum)
+$typeOfCategories = array(0, 1, 2);
 
 include($db_settings_file);
 
