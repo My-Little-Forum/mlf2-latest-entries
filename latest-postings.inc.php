@@ -1,6 +1,13 @@
 <?php
 
 $db_settings_file = "";
+/**
+ * Display the latest entries of a My Little Forum instance
+ *
+ * @author: H. Schütz
+ * @author: H. August
+ *
+ */
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
