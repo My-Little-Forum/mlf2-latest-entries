@@ -49,7 +49,7 @@ if (empty($errors)) {
 		ELSE NULL
 	END AS category
 	FROM " . $db_settings['forum_table'] . " AS t1
-	WHERE t1.category IN(SELECT id FROM " . $db_settings['category_table'] . " WHERE accession NOT IN(1, 2)) OR t1.category = 0
+	WHERE t1.category IN(SELECT id FROM " . $db_settings['category_table'] . " WHERE accession IN(". implode(", ", $typeOfCategories) .")) OR t1.category = 0
 	ORDER BY t1.time DESC, t1.id DESC
 	LIMIT 0, 20";
 	$result = mysqli_query($link, $query);
