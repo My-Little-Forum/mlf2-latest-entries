@@ -23,7 +23,14 @@ $numberOfEntries = 25;
 # 0 = categories, visible to not registered users
 # 1 = categories, visible to registered users (hide them in the list, if they are hidden in the forum)
 # 2 = categories, visible to only moderators and administrators (normally hidden in the forum)
-$typeOfCategories = array(0, 1, 2);
+#
+# show entries only from public categories or from a forum without categories
+# $typeOfCategories = array(0);
+# show entries only from public categories and from categories, that are accessible only by registered users
+# $typeOfCategories = array(0, 1);
+# show entries from categories, accessible to the public (0), and those that are restricted to registered users (1)) and to the forum team (admins and moderators) (2))
+# $typeOfCategories = array(0, 1, 2);
+$typeOfCategories = array(0);
 
 include($db_settings_file);
 
