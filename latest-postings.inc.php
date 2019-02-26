@@ -75,7 +75,7 @@ if (empty($errors)) {
 	WHERE t1.category IN(SELECT id FROM " . $db_settings['category_table'] . " WHERE accession IN(". implode(", ", $typeOfCategories) .")) OR t1.category = 0
 	ORDER BY t1.time DESC, t1.id DESC
 	LIMIT 0, " . intval($numberOfEntries);
-	echo "<pre>". print_r($query, true) ."</pre>\n";
+	$output['debug'][] = "<pre>". print_r($query, true) ."</pre>\n";
 	$result = mysqli_query($link, $query);
 	if ($result === false) {
 		$errors[] = "Reading from the database failed.";
@@ -83,7 +83,7 @@ if (empty($errors)) {
 		$errors[] = mysqli_error($link);
 	} else {
 		while ($row = mysqli_fetch_assoc($result)) {
-			echo "<pre>" . print_r($row, true) . "</pre>\n";
+			$output['debug'][] = "<pre>" . print_r($row, true) . "</pre>\n";
 		}
 		/* Free resultset */
 		mysqli_free_result($result);
