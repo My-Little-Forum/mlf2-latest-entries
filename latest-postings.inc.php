@@ -20,8 +20,8 @@ $debug = false;
 # base URL of the forum
 $forum_url = "https://www.example.com/forum/index.php";
 # file with the database settings
-# please set path to the db_settings.php of the installation of My Little Forum
-$db_settings_file = "../config/db_settings.php";
+# please set the local file system path (!) to the db_settings.php of the installation of My Little Forum
+$db_settings_file = "./forum/config/db_settings.php";
 # number of entries to display
 # set the overall number of entries you want to display on this page
 $numberOfEntries = 25;
