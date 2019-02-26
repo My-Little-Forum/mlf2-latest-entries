@@ -13,6 +13,10 @@ error_reporting(E_ALL);
 /**
  * configuration section
  */
+# (de)activate the debug mode
+# with debug mode = true the script outputs additional informations about the script run
+# default is: $debug = false;
+$debug = false;
 # file with the database settings
 # please set path to the db_settings.php of the installation of My Little Forum
 $db_settings_file = "../config/db_settings.php";
