@@ -39,6 +39,12 @@ h1 {
 	margin: 0;
 	padding: 0;
 }
+.forum-entries li a {
+	border-top: 1px solid #ddd;
+}
+.forum-entries li:last-child a {
+	border-bottom: 1px solid #ddd;
+}
 .forum-entries a {
 	color: #000;
 	background-color: #eee;
