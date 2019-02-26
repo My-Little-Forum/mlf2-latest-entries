@@ -5,9 +5,9 @@ html {
 }
 h1 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 1.15em !important;
+	font-size: 1.15em;
 	text-align: left;
-	margin: 2.2em 0px .8em 0px !important;
+	margin: 2.2em 0px .8em 0px;
 }
 ul {
 	list-style-type: none;
