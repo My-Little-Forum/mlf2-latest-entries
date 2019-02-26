@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <title>{%page-title%}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="origin">
+  <meta name="referrer" content="same-origin">
+  <meta http-equiv="refresh" content="{%reload-rhythm%}">
+  <meta name="date" content="{%date-of-request%}">
+  <meta name="modified" content="{%date-of-last-modification%}">
+  <meta name="robots" content="noindex, follow">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" href="favicon.ico" type="image/ico">
+  <link rel="icon" href="195x195.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="latest.css">
+ </head>
+ <body>
+  <p><a href="#Inhalt" title="jump!">directly to content</a> (skip navigation)</p>
+  <header>
+   <h1>{%page-title%}</h1>
+  </header>
+  <nav><!-- put in your own navigation -->
+  </nav><!-- end of navigation -->
+  <main role="main">
+   <ul class="posts">
+{%list-of-latest-postings%}
+   </ul>
+  </main>
+  <footer><!-- put in your page footer -->
+  </footer><!-- end of page footer -->
+ </body>
+</html>
