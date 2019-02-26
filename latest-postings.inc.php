@@ -52,7 +52,7 @@ $filename_info = "data/lp-debug.html";
 
 include($db_settings_file);
 $template['main'] = file_get_contents($filename_main);
-$template['item'] = file_get_contents($filename_item);
+$template['list'] = file_get_contents($filename_item);
 
 $link = mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database']);
 
@@ -88,6 +88,17 @@ if (empty($errors)) {
 	} else {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$output['debug'][] = print_r($row, true);
+			$template['item'] = $template['list'];
+			if ($row['category'] !== NULL) {
+				$template['item'] = str_replace('{%item-category%}', " <span>(". htmlspecialchars($row['category']) .")</span>", $template['item']);
+			} else {
+				$template['item'] = str_replace('{%item-category%}', "", $template['item']);
+			}
+			$template['item'] = str_replace('{%item-url%}', $forum_url . "?id=" . htmlspecialchars($row['id']), $template['item']);
+			$template['item'] = str_replace('{%item-subject%}', htmlspecialchars($row['subject']), $template['item']);
+			$template['item'] = str_replace('{%item-author%}', htmlspecialchars($row['name']), $template['item']);
+			$template['item'] = str_replace('{%item-time%}', htmlspecialchars($row['time']), $template['item']);
+			$output['items'][] = $template['item'];
 		}
 		/* Free resultset */
 		mysqli_free_result($result);
