@@ -67,11 +67,9 @@ h1 {
 	text-decoration: underline;
 }
 .forum-entries a:active {
-	color: #000;
-	background-color: #eee;
+	color: #820;
+	background-color: #ffe;
 	text-decoration: none;
-	border: 1px solid #eee;
-	outline: none;
 }
 li {
 	font-size: 95%;
