@@ -46,16 +46,12 @@ h1 {
 	border-bottom: 1px solid #ddd;
 }
 .forum-entries a {
-	color: #000;
-	background-color: #eee;
+	display: block;
 	text-decoration: none;
-	border: 1px solid #eee;
-}
-.forum-entries a:link {
 	color: #000;
-	background-color: #eee;
-	text-decoration: none;
-	border: 1px solid #eee;
+	background-color: transparent;
+	margin: 0;
+	padding: 0.5rem;
 }
 .forum-entries a:visited {
 	color: #666;
