@@ -34,30 +34,30 @@ h1 {
 	margin: 0;
 	padding: 0.5rem 0;
 }
-ul {
+.forum-entries {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
-ul#posts a.post {
+.forum-entries a {
 	color: #000;
 	background-color: #eee;
 	text-decoration: none;
 	border: 1px solid #eee;
 }
-ul#posts a.post:link {
+.forum-entries a:link {
 	color: #000;
 	background-color: #eee;
 	text-decoration: none;
 	border: 1px solid #eee;
 }
-ul#posts a.post:visited {
+.forum-entries a:visited {
 	color: #084262;
 	background-color: #eee;
 	text-decoration: none;
 	border: 1px solid #eee;
 }
-ul#posts a.post:focus, a.post:hover {
+.forum-entries a:focus, .forum-entries a:hover {
 	color: #000;
 	background-color: #fff;
 	text-decoration: none;
@@ -65,7 +65,7 @@ ul#posts a.post:focus, a.post:hover {
 	margin-left: -1px;
 	margin-right: -1px;
 }
-ul#posts a.post:active {
+.forum-entries a:active {
 	color: #000;
 	background-color: #eee;
 	text-decoration: none;
