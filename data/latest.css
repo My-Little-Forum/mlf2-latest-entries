@@ -75,18 +75,6 @@ ul#posts a.post:active {
 li {
 	font-size: 95%;
 }
-li.top {
-	margin-left: -1.4em;
-	padding-left: 18px;
-	padding-right: 1px;
-	background: url(../img/topic.png) no-repeat 0px 1px;
-}
-li.reply {
-	margin-left: -1.4em;
-	padding-left: 18px;
-	padding-right: 1px;
-	background: url(../img/reply_s.png) no-repeat 0px 0px;
-}
 .cat {
 	color: #5C5C5C;
 }
