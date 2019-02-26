@@ -41,10 +41,14 @@ $output['page-title'] = "The latest (max) ". $numberOfEntries ." entries of my f
 # reload rhythm
 # number of seconds to the next automatic page reload (i.e. 300 seconds = five minutes)
 $output['reload-rhythm'] = 120;
+# placeholder for the debug and the error output
+$output['debug-and-errors'] = "";
 # file path to the main template
 $filename_main = "data/lp-template.html";
 # file path to the item template
 $filename_item = "data/lp-item.html";
+# file path to the information block template
+$filename_info = "data/lp-debug.html";
 
 include($db_settings_file);
 $template['main'] = file_get_contents($filename_main);
@@ -75,7 +79,7 @@ if (empty($errors)) {
 	WHERE t1.category IN(SELECT id FROM " . $db_settings['category_table'] . " WHERE accession IN(". implode(", ", $typeOfCategories) .")) OR t1.category = 0
 	ORDER BY t1.time DESC, t1.id DESC
 	LIMIT 0, " . intval($numberOfEntries);
-	$output['debug'][] = "<pre>". print_r($query, true) ."</pre>\n";
+	$output['debug'][] = print_r($query, true);
 	$result = mysqli_query($link, $query);
 	if ($result === false) {
 		$errors[] = "Reading from the database failed.";
@@ -83,13 +87,20 @@ if (empty($errors)) {
 		$errors[] = mysqli_error($link);
 	} else {
 		while ($row = mysqli_fetch_assoc($result)) {
-			$output['debug'][] = "<pre>" . print_r($row, true) . "</pre>\n";
+			$output['debug'][] = print_r($row, true);
 		}
 		/* Free resultset */
 		mysqli_free_result($result);
 	}
 	/* Closing connection */
 	mysqli_close($link);
+}
+if ($debug === true) {
+	$template['info'] = file_get_contents($filename_info);
+	$template['info'] = str_replace('{%info-class%}', "debugging", $template['info']);
+	$template['info'] = str_replace('{%info-header%}', "Debug informations", $template['info']);
+	$template['info'] = str_replace('{%info-content%}', "<pre>". implode("\n\n", $output['debug']) . "</pre>\n", $template['info']);
+	$output['debug-and-errors'] .= $template['info'];
 }
 if (!empty($errors)) {
 	echo "<pre>" . print_r($errors, true) . "</pre>\n";
