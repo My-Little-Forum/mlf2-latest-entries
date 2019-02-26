@@ -31,6 +31,12 @@ $numberOfEntries = 25;
 # show entries from categories, accessible to the public (0), and those that are restricted to registered users (1)) and to the forum team (admins and moderators) (2))
 # $typeOfCategories = array(0, 1, 2);
 $typeOfCategories = array(0);
+# page totle to display
+# shown in the title element (program title bar of the browser) and as main header in the page
+$output['page-title'] = "The latest (max) ". $numberOfEntries ." entries of my forum";
+# reload rhythm
+# number of seconds to the next automatic page reload (i.e. 300 seconds = five minutes)
+$output['reload-rhythm'] = 120;
 
 include($db_settings_file);
 
