@@ -116,7 +116,11 @@ if ($debug === true) {
 	$output['debug-and-errors'] .= $template['info'];
 }
 if (!empty($errors)) {
-	echo "<pre>" . print_r($errors, true) . "</pre>\n";
+	$template['error'] = file_get_contents($filename_info);
+	$template['error'] = str_replace('{%info-class%}', "errors", $template['error']);
+	$template['error'] = str_replace('{%info-header%}', "Error(s) occured", $template['error']);
+	$template['error'] = str_replace('{%info-content%}', "<pre>" . print_r($errors, true) . "</pre>\n", $template['error']);
+	$output['debug-and-errors'] .= $template['error'];
 }
 
 ?>
