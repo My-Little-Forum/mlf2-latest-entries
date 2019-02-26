@@ -58,6 +58,8 @@ $link = mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings[
 
 if ($link === false) {
 	$errors[] = "Connecting to database failed.";
+} else {
+	$output['debug'][] = "Database connection established.";
 }
 if (empty($errors)) {
 	mysqli_query($link, 'SET NAMES utf8');
