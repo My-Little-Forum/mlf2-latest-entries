@@ -6,6 +6,13 @@ html {
 	padding: 0;
 	background: #ffce8f;
 }
+body {
+	width: 64vw;
+	min-height: 100vh;
+	margin: 0 auto;
+	padding: 1rem;
+	background: #fff8f0;
+}
 #skip-link {
 	/* https://snook.ca/archives/html_and_css/hiding-content-for-accessibility */
 	position: absolute !important;
