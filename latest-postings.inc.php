@@ -37,8 +37,11 @@ $output['page-title'] = "The latest (max) ". $numberOfEntries ." entries of my f
 # reload rhythm
 # number of seconds to the next automatic page reload (i.e. 300 seconds = five minutes)
 $output['reload-rhythm'] = 120;
+# file path to the main template
+$filename_main = "data/lp-template.html";
 
 include($db_settings_file);
+$template['main'] = file_get_contents($filename_main);
 
 $link = mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database']);
 
