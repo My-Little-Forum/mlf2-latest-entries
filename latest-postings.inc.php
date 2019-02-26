@@ -125,4 +125,11 @@ if (!empty($errors)) {
 	$output['debug-and-errors'] .= $template['error'];
 }
 
+$template['main'] = str_replace('{%page-title%}', $output['page-title'], $template['main']);
+$template['main'] = str_replace('{%reload-rhythm%}', $output['reload-rhythm'], $template['main']);
+$template['main'] = str_replace('{%information-section%}', $output['debug-and-errors'], $template['main']);
+$template['main'] = str_replace('{%list-of-latest-postings%}', implode("\n\n", $output['items']), $template['main']);
+
+echo $template['main'];
+
 ?>
