@@ -39,9 +39,12 @@ $output['page-title'] = "The latest (max) ". $numberOfEntries ." entries of my f
 $output['reload-rhythm'] = 120;
 # file path to the main template
 $filename_main = "data/lp-template.html";
+# file path to the item template
+$filename_item = "data/lp-item.html";
 
 include($db_settings_file);
 $template['main'] = file_get_contents($filename_main);
+$template['item'] = file_get_contents($filename_item);
 
 $link = mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database']);
 
