@@ -22,7 +22,7 @@
  * @author H. Schütz
  * @author H. August
  * @license https://opensource.org/licenses/GPL-3.0
- * @version 0.1
+ * @version 0.2
  */
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
