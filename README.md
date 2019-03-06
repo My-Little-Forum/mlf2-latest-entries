@@ -27,3 +27,16 @@ With version 0.2 an INI file (`data/config/lpp.ini`) for storing of the settings
     - `reloadRhythm` [`integer`]: number of seconds until the page reloads the next time
 
 `$output['debug-and-errors']` got removed *from the settings* but is a variable initialisation in the script anyway
+
+## Settings and their counterparts in the PHP script
+
+- setting `debug` is equivalent to PHP variable `$settings['general']['debug']`
+- setting `numberOfEntries` is equivalent to PHP variable `$settings['general']['numberOfEntries']`
+- setting `typeOfCategories` is equivalent to PHP variable `$settings['general']['typeOfCategories']`
+- setting `forumURL` is equivalent to PHP variable `$settings['paths']['forumURL']`
+- setting `dbSettings` is equivalent to PHP variable `$settings['paths']['dbSettings']`
+- setting `mainTemplate` is equivalent to PHP variable `$settings['paths']['mainTemplate']`
+- setting `itemTemplate` is equivalent to PHP variable `$settings['paths']['itemTemplate']`
+- setting `infoTemplate` is equivalent to PHP variable `$settings['paths']['infoTemplate']`
+- setting `pageTitle` is equivalent to PHP variable `$settings['output']['pageTitle']`
+- setting `reloadRhythm` is equivalent to PHP variable `$settings['output']['reloadRhythm']`
