@@ -10,14 +10,20 @@ This script is licenced under the terms of the GPL 3.
 
 ## Configuration
 
-- `$debug` [`true`, `false`]: additional output for development and/or debugging
-- `$forum_url` [`string`]: the URL of the forum as you see it in the browsers address bar (i.e. "https://example.com/forum/")
-- `$db_settings_file` [`string`]: the *local path* of the webserver from the script to the file `config/db_settings.php` from within the forum
-- `$numberOfEntries` [`integer`]: number of latest entries to display in the page
-- `$typeOfCategories` [`array`]: an array to store the information, which type of categories should get displayed (`0`: public categories, `1`: categories, restricted to registered users, `2`: categories, restricted to moderators and administrators)
-- `$output['page-title']` [`string`]: string with placeholders for the page title
-- `$output['reload-rhythm']` [`integer`]: number of seconds until the page reloads the next time
-- `$output['debug-and-errors']` [`string`]: empty string that get complemented with strings if errors occured and/or the debug mode is activated
-- `$filename_main` [`string`]: file name of the main HTML template
-- `$filename_item` [`string`]: file name of the HTML template for list items
-- `$filename_info` [`string`]: file name of the HTML template for error messages and/or debug messages
+With version 0.2 an INI file (`data/config/lpp.ini`) for storing of the settings got introduced. The settings stayed the same but changed their names.
+
+- section `[general]`
+    - `debug` [`boolean`]: additional output for development and/or debugging (`true` or `false`)
+    - `numberOfEntries` [`integer`]: number of latest entries to display in the page
+    - `typeOfCategories` [`array`]: an array to store the information, which type of categories should get displayed (`0`: public categories, `1`: categories, restricted to registered users, `2`: categories, restricted to moderators and administrators)
+- section `[paths]`
+    - `forumURL` [`string`]: the URL of the forum as you see it in the browsers address bar (i.e. "https://example.com/forum/")
+    - `dbSettings` [`string`]: the *local path* of the webserver from the script to the file `config/db_settings.php` from within the forum
+    - `mainTemplate` [`string`]: file name of the main HTML template
+    - `itemTemplate` [`string`]: file name of the HTML template for list items
+    - `infoTemplate` [`string`]: file name of the HTML template for error messages and/or debug messages
+- section `[output]`
+    - `pageTitle` [`string`]: string with placeholders for the page title
+    - `reloadRhythm` [`integer`]: number of seconds until the page reloads the next time
+
+`$output['debug-and-errors']` got removed *from the settings* but is a variable initialisation in the script anyway
