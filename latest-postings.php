@@ -27,51 +27,15 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-/**
- * configuration section
- */
-# (de)activate the debug mode
-# with debug mode = true the script outputs additional informations about the script run
-# default is: $debug = false;
-$debug = false;
-# base URL of the forum
-$forum_url = "https://www.example.com/forum/index.php";
-# file with the database settings
-# please set the local file system path (!) to the db_settings.php of the installation of My Little Forum
-$db_settings_file = "./forum/config/db_settings.php";
-# number of entries to display
-# set the overall number of entries you want to display on this page
-$numberOfEntries = 25;
-# array of category types to display
-# 0 = categories, visible to not registered users
-# 1 = categories, visible to registered users (hide them in the list, if they are hidden in the forum)
-# 2 = categories, visible to only moderators and administrators (normally hidden in the forum)
-#
-# show entries only from public categories or from a forum without categories
-# $typeOfCategories = array(0);
-# show entries only from public categories and from categories, that are accessible only by registered users
-# $typeOfCategories = array(0, 1);
-# show entries from categories, accessible to the public (0), and those that are restricted to registered users (1)) and to the forum team (admins and moderators) (2))
-# $typeOfCategories = array(0, 1, 2);
-$typeOfCategories = array(0);
-# page totle to display
-# shown in the title element (program title bar of the browser) and as main header in the page
-$output['page-title'] = "The latest (max) ". $numberOfEntries ." entries of my forum";
-# reload rhythm
-# number of seconds to the next automatic page reload (i.e. 300 seconds = five minutes)
-$output['reload-rhythm'] = 120;
 # placeholder for the debug and the error output
 $output['debug-and-errors'] = "";
-# file path to the main template
-$filename_main = "data/lp-template.html";
-# file path to the item template
-$filename_item = "data/lp-item.html";
-# file path to the information block template
-$filename_info = "data/lp-debug.html";
 
-include($db_settings_file);
-$template['main'] = file_get_contents($filename_main);
-$template['list'] = file_get_contents($filename_item);
+$settings = parse_ini_file('data/config/lpp.ini', true, INI_SCANNER_TYPED);
+$output['debug'][] = print_r($settings, true);
+
+include($settings['paths']['dbSettings']);
+$template['main'] = file_get_contents($settings['paths']['mainTemplate']);
+$template['list'] = file_get_contents($settings['paths']['itemTemplate']);
 
 $link = mysqli_connect($db_settings['host'], $db_settings['user'], $db_settings['password'], $db_settings['database']);
 
@@ -97,9 +61,9 @@ if (empty($errors)) {
 		ELSE NULL
 	END AS category
 	FROM " . $db_settings['forum_table'] . " AS t1
-	WHERE t1.category IN(SELECT id FROM " . $db_settings['category_table'] . " WHERE accession IN(". implode(", ", $typeOfCategories) .")) OR t1.category = 0
+	WHERE t1.category IN(SELECT id FROM " . $db_settings['category_table'] . " WHERE accession IN(". implode(", ", $settings['general']['typeOfCategories']) .")) OR t1.category = 0
 	ORDER BY t1.time DESC, t1.id DESC
-	LIMIT 0, " . intval($numberOfEntries);
+	LIMIT 0, " . intval($settings['general']['numberOfEntries']);
 	$output['debug'][] = print_r($query, true);
 	$result = mysqli_query($link, $query);
 	if ($result === false) {
@@ -115,7 +79,7 @@ if (empty($errors)) {
 			} else {
 				$template['item'] = str_replace('{%item-category%}', "", $template['item']);
 			}
-			$template['item'] = str_replace('{%item-url%}', $forum_url . "?id=" . htmlspecialchars($row['id']), $template['item']);
+			$template['item'] = str_replace('{%item-url%}', htmlspecialchars($settings['paths']['forumURL']) . "?id=" . htmlspecialchars($row['id']), $template['item']);
 			$template['item'] = str_replace('{%item-subject%}', htmlspecialchars($row['subject']), $template['item']);
 			$template['item'] = str_replace('{%item-author%}', htmlspecialchars($row['name']), $template['item']);
 			$template['item'] = str_replace('{%item-time%}', htmlspecialchars($row['time']), $template['item']);
@@ -127,23 +91,24 @@ if (empty($errors)) {
 	/* Closing connection */
 	mysqli_close($link);
 }
-if ($debug === true) {
-	$template['info'] = file_get_contents($filename_info);
+if ($settings['general']['debug'] === true) {
+	$template['info'] = file_get_contents($settings['paths']['infoTemplate']);
 	$template['info'] = str_replace('{%info-class%}', "debugging", $template['info']);
 	$template['info'] = str_replace('{%info-header%}', "Debug informations", $template['info']);
 	$template['info'] = str_replace('{%info-content%}', "<pre>". implode("\n\n", $output['debug']) . "</pre>\n", $template['info']);
 	$output['debug-and-errors'] .= $template['info'];
 }
 if (!empty($errors)) {
-	$template['error'] = file_get_contents($filename_info);
+	$template['error'] = file_get_contents($settings['paths']['infoTemplate']);
 	$template['error'] = str_replace('{%info-class%}', "errors", $template['error']);
 	$template['error'] = str_replace('{%info-header%}', "Error(s) occured", $template['error']);
 	$template['error'] = str_replace('{%info-content%}', "<pre>" . print_r($errors, true) . "</pre>\n", $template['error']);
 	$output['debug-and-errors'] .= $template['error'];
 }
 
-$template['main'] = str_replace('{%page-title%}', $output['page-title'], $template['main']);
-$template['main'] = str_replace('{%reload-rhythm%}', $output['reload-rhythm'], $template['main']);
+$settings['output']['pageTitle'] = str_replace('{%number-of-entries%}', $settings['general']['numberOfEntries'], $settings['output']['pageTitle']);
+$template['main'] = str_replace('{%page-title%}', $settings['output']['pageTitle'], $template['main']);
+$template['main'] = str_replace('{%reload-rhythm%}', $settings['output']['reloadRhythm'], $template['main']);
 $template['main'] = str_replace('{%information-section%}', $output['debug-and-errors'], $template['main']);
 $template['main'] = str_replace('{%list-of-latest-postings%}', implode("", $output['items']), $template['main']);
 
