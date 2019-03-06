@@ -31,7 +31,7 @@ error_reporting(E_ALL);
 $output['debug-and-errors'] = "";
 
 $settings = parse_ini_file('data/config/lpp.ini', true, INI_SCANNER_TYPED);
-$output['debug'][] = print_r($settings, true);
+#$output['debug'][] = print_r($settings, true);
 
 include($settings['paths']['dbSettings']);
 $template['main'] = file_get_contents($settings['paths']['mainTemplate']);
